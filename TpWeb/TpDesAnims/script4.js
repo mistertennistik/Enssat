@@ -3,9 +3,12 @@ var ctx;
 var canvas;
 var l ;
 var h ;
-var x ;
+var x1 ;
+var x2;
+var x3;
 var y ;
-var cpt;
+var cptDep;
+var cptEspace;
 function init(){
 	canvas = document.createElement('canvas');
 	canvas.id = 'monCanvas';
@@ -16,17 +19,20 @@ function init(){
 	ctx = canvas.getContext("2d");
 	ctx.fillStyle = "#FF0000";
  	document.getElementsByTagName('body')[0].appendChild(canvas);
- 	x=0;
+ 	x1=0;
+ 	x2  =0;
+ 	x3 =0;
  	y=0;
 
- 	cpt=2;
+ 	cptDep=4;
+ 	cptEspace=0;
  	intervalID = window.setInterval(function(){
 
- 		if(cpt===0){
+ 		if(cptDep===0){
  			window.clearInterval(intervalID);
  			startDrawing();
  		}else{
- 			cpt--;
+ 			cptDep--;
  		}
  		
  	},1000);
@@ -40,7 +46,21 @@ function startDrawing(){
 }
 
 function redraw(){
-	x+=10;
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillRect(x,y,l,h);
+	cptEspace++;
+	if(cptEspace>=10){
+		ctx.clearRect(x2, y, l, h);
+		x2+=10;
+		ctx.fillRect(x2,y,l,h);
+		console.log("ici");
+	}if(cptEspace>=19){
+		ctx.clearRect(x3,y,l,h);
+		x3+=10;
+		ctx.fillRect(x3,y,l,h);
+	}
+	ctx.clearRect(x1, y, l, h);
+	x1+=10;
+	
+	
+  
+  ctx.fillRect(x1,y,l,h);
  }
