@@ -83,8 +83,8 @@ function sprite (options) {
 
 
 function mainLoop () {
-	window.requestAnimationFrame(mainLoop);
+	
   coin.update();
   coin.render();
- 	
+ 	window.requestAnimationFrame(mainLoop);
 }
